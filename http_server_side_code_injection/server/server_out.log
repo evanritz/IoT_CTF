@@ -1,0 +1,124 @@
+Server is running on port 8090
+Hit app page: "/"
+Token, Staying
+Hit app page: "/"
+Token, Staying
+
+Ncat: bind to :::3456: Address already in use. QUITTING.
+
+Hit app page: "/"
+Token, Staying
+Hit login page: "/"
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1IjoiZXZhbiJ9
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1IjoicmljaGFyZCJ9
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1Ijoid2hhdHN1cCJ9
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1IjoiZXZhbiJ9
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1IjoicmljaGFyZCJ9
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1Ijoid2hhdHN1cCJ9
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1IjoiZXZhbm4ifQ==
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1IjoicmljaGFyZCJ9
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1IjoiZXZhbiJ9
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1IjoiZXZhbiJ9
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit login page: "/"
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit login page: "/"
+Hit auth page: "/auth"
+Cookie either Cleared or None, Creating...
+Cookie: eyJ1IjoiXyQkTkRfRlVOQyQkX2Z1bmN0aW9uICgpe3JldHVybiAnRXZpbFVzZXInfSgpIn0=
+Sending Cookie..
+Hit app page: "/"
+Token, Staying
+Hit unauth page: "/unauth"
+Hit login page: "/"
+Hit app page: "/"
+Token, Staying
+Hit app page: "/"
+Token, Staying
+Hit app page: "/"
+Token, Staying
+Hit app page: "/"
+Token, Staying
+
+Ncat: bind to :::1337: Address already in use. QUITTING.
+

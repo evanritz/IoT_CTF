@@ -73,23 +73,17 @@ else
             if [ $? -eq 0 ]
             then
                 elapsed_t=$(( $SECONDS-$start_t ))
-                echo -ne " ${GREEN}Successful${NC}"
-                echo -e "\r\nDone: Completed in ${elapsed_t}s"
+                echo -ne " ${GREEN}Successful${NC}\r\n"
+                echo -e " Done: Completed in ${elapsed_t}s"
                 echo -e "  Username: $username"
                 echo -e "  Password: $password"
                 exit 0
-            else
-                echo -ne " ${RED}Fail${NC}"
             fi
-    
-            sleep 1
-            
-            (( combo_iter++ ))
-        
+            (( combo_iter++ )) 
         done < $passwords_file
     done < $usernames_file
     elapsed_t=$(( $SECONDS-$start_t ))
-    echo -e "All Combinations attempted and failed"
+    echo -e "\r\nAll Combinations attempted and failed"
     echo -e "Done: Completed in ${elapsed_t}s"
 fi
 
