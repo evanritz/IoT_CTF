@@ -12,22 +12,15 @@ MODULES_DIR = os.path.join(WORKING_DIR, 'modules')
 
 LISTS_DIR = os.path.join(WORKING_DIR, 'lists')
 
-# Pass in arr of strs that you want anwsers to
-# ['target', 'port', 'val'...]
-# prompts user with target = TypeTheAnwser
-# returns as dict once finished
-
-def select(keys):
-    cmd_dict = {}
-    i = 0
-    while i < len(keys):
-        try:
-            key = keys[i]
-            val = input(f'{key.capitalize()} = ')
-            cmd_dict.update({key: val})
-            i += 1
-        except KeyboardInterrupt:
-            break
-    return cmd_dict
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 
