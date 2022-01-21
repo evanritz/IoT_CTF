@@ -1,14 +1,14 @@
 #
-# uitl functions for peekaboo modules
-#
-#
-#
+# utils functions and consts for peekaboo modules
+# 
+
 
 import subprocess
 import socket
 
 import os
 
+# dir consts
 WORKING_DIR = os.path.abspath('.')
 
 MODULES_DIR = os.path.join(WORKING_DIR, 'modules')
@@ -17,6 +17,7 @@ LISTS_DIR = os.path.join(WORKING_DIR, 'lists')
 
 BACKDOOR_PORT = 54111
 
+# for terminal coloring
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -29,22 +30,28 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
+# attempts TCP connection with backdoor port
+# if port is open, connection will resolve, otherwise it will fail
 def detect_backdoor(host):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     endpoint = (host.ip_addr, BACKDOOR_PORT)
     host.backdoor = not sock.connect_ex(endpoint)
     sock.close()
 
+# linux command line ping
 def do_ping(host):
     return do_advanced_command(['ping', '-c 1', host.ip_addr])
 
+# linux command line hostnames
 def get_hostnames():
     return do_simple_command(['hostname', '-I'])
     
+# runs linux command, returns stdout
 def do_simple_command(cmd):
     b_out = subprocess.check_output(cmd)
     return b_out.decode('UTF-8').strip()
 
+# runs linux command, returns (stdout, stderr, exitcode)
 def do_advanced_command(cmd):
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     b_out, b_err = proc.communicate()
