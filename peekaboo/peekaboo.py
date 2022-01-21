@@ -1,36 +1,93 @@
+# peekaboo.py
+#
+# This is the Peekaboo Launcher
+# Peekaboo is shitty clone of msfvenom launcher/loader/interface
+# To run peekaboo you MUST provide a nmap scan file in XML as an argument
+# e.g python3 peekaboo.py capture.xml
+#
+# peekaboo can load modules during runtime with the command "reload modules"
+#
+# Peekaboo checks these dirs for files:
+# modules/
+# lists/
+# backdoor/
+# 
+# modules/ - Peekaboo modules are defined by these requirments:
+# modules MUST be named something descriptive
+# modules define a class within that is the same name as the .py file ALL uppercase
+# function name() - returns the name of the class as a string ALL uppercase
+# function selected() - inits needed variables, loads files, etc, stuff that can be done before running an exploit/attack
+# function run() - runs the exploit/attack code, returns True if successful, False if failed
+# TODO: optional function infect() - drops backdoor binary on device and executes
+#
+# list/ - Holds username/password lists that can be used for modules
+# import the list dir from utils.py
+#
+# backdoor/ - Holds compiled binarys of backdoors that can be dropped on to a target device
+# ! http server has to been added to module to do this !
+# import the backdoor dir from utils.py
+#
+# Current commands for Peekaboo:
+#
+# ! Target commands !
+# - lists targets
+#       lists targets for the nmap scan file in ordered list
+#       
+# - select target <arg1>
+#       selects target from nmap scan file
+#       arg1: can be idx from ordered list or ip addr
+#
+# - info target <arg1>
+#       lists port scan of selected target
+#       arg1: can be idx from ordered list or ip addr or none if target already selected
+#
+# - session target
+#       target MUST be selected already
+#       if target has a backdoor on BACKDOOR_PORT, will connect to backdoor shell        
+#
+# ! Module commands !
+# - list modules
+#       lists modules currently loaded in ordered list
+#
+# - reload modules
+#       reloads modules for MODULES dir
+#
+# - select module <arg1>
+#       selects module from currently loaded modules
+#       arg1: can be idx from ordered list or MODULE_NAME
+#
+# - run module
+#       module MUST be selected already
+#       Will run selected module on selected target
+#
+# ! Misc commands !
+# - help
+#       prints this text
+#
+# Written by Evan and Richard
+
 import subprocess
 import sys
 import xmltodict
 import socket
 import os
 import telnetlib
-import getpass ##
 
 from utils import *
 
-
 PROG_NAME = 'Peekaboo'
 
+# selected target
 TARGET = None
+
 LOCALHOST = None
 
+# selected module
 MODULE = None
+# loaded modules dict
 MODULES = {}
-SESSION = None
 
-BACKDOOR_PORT = 54111
-
-WORKING = os.path.abspath('.')
-# peekaboo modules
-#
-# e.g bruteforce.py
-# Must define class as captialized name of file (class Bruteforce)
-# No __init__ for class
-# funcs to implement:
-# selected() => ask for user needed params and set everything to go
-# run() => execute module and wait for response if successful or failed
-# 
-
+# data obj for parsing XML nmap scan file 
 class Host:
     def __init__(self, host_dict):
         self.ip_addr = host_dict['address']['@addr']
@@ -55,16 +112,19 @@ class Port:
         self.state = port_dict['state']['@state']
         self.service = port_dict['service']['@name']
 
+# loads modules from MODULES dir and repopulates MODULES dict
 def load_modules():
 
     module_files = os.listdir(MODULES_DIR)
     module_names = []
 
+    # only grab .py files
     for module_file in module_files:
         module_name, ext = os.path.splitext(module_file)
         if ext == '.py':
             module_names.append(module_name)
         
+    # look at MODULES dir for files
     sys.path.append(MODULES_DIR)
 
     print(f'Detecting Modules...')
@@ -72,6 +132,8 @@ def load_modules():
     global MODULES
     global MODULE
     MODULES = {}
+
+    # try to load module files from MODULES dir
     for module_name in module_names:
         print(f'Trying to load ({module_name}) Module?: ', end='')
         try:
@@ -82,6 +144,7 @@ def load_modules():
             MODULES.update({module_name.upper(): mclass})
             if MODULE != None:
                 if MODULE.name() == module_name.upper():
+                    # inits module obj from class def
                     MODULE = mclass()
 
             print(f'{bcolors.OKGREEN}Loaded{bcolors.ENDC}')
@@ -92,30 +155,10 @@ def load_modules():
     print(f'Detected {len(module_names)} Modules, Loaded {len(MODULES.keys())} Modules')
 
 
-def test_module():
-    global MODULE    
-    MODULE.test_func()
-
-def detect_backdoor(host):
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    endpoint = (host.ip_addr, BACKDOOR_PORT)
-    host.backdoor = not sock.connect_ex(endpoint)
-    sock.close()
-
-def do_ping(host):
-    return do_advanced_command(['ping', '-c 1', host.ip_addr])
-
-def get_hostnames():
-    return do_simple_command(['hostname', '-I'])
-    
-def do_simple_command(cmd):
-    b_out = subprocess.check_output(cmd)
-    return b_out.decode('UTF-8').strip()
-
-def do_advanced_command(cmd):
-    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    b_out, b_err = proc.communicate()
-    return (b_out.decode('UTF-8').strip(), b_err.decode('UTF-8').strip(), proc.returncode)
+# debug function
+#def test_module():
+#    global MODULE    
+#    MODULE.test_func()
 
 def do_nothing():
     pass
@@ -134,12 +177,6 @@ def list_modules():
     for num, module_name in enumerate(MODULES.keys()):
         print('{: <15} {: <15}'.format(num+1, module_name))
 
-def list_slaves(hosts):
-    print('{: <15} {: <15}'.format('IDX', 'Slave'))
-    for num, host in enumerate(hosts):
-        if host.backdoor:
-            print('{: <15} {: <15}'.format(num+1, host.ip_addr))
-
 def select_target(hosts, args):
 
     # select either a list num or ip addr for target
@@ -147,11 +184,11 @@ def select_target(hosts, args):
     # vaildate num or ip
 
     if len(args) > 1:
-        print('[select target] Remove unneeded arguments...')
-        print('[select target] Nothing was selected')
+        print(f'[!] {bcolors.FAIL}Remove unneeded arguments...{bcolors.ENDC}')
+        print(f'[!] {bcolors.FAIL}Nothing was selected{bcolors.ENDC}')
     elif len(args) < 1:
-        print('[select target] Must specify list number or ip address for target...')
-        print('[select target] Nothing was selected')
+        print(f'[!] {bcolors.FAIL}Must specify list number or ip address for target...{bcolors.ENDC}')
+        print(f'[!] {bcolors.FAIL}Nothing was selected{bcolors.ENDC}')
     else:
         target = args[0]
         target_host = None
@@ -172,8 +209,8 @@ def select_target(hosts, args):
             global TARGET
             TARGET = target_host
         else:
-            print('[select target] Invaild input')
-            print('[select target] Nothing was selected')
+            print(f'[!] {bcolors.FAIL}Invaild input{bcolors.ENDC}')
+            print(f'[!] {bcolors.FAIL}Nothing was selected{bcolors.ENDC}')
 
 def select_module(args):
      
@@ -181,14 +218,14 @@ def select_module(args):
     global TARGET
 
     if TARGET == None:
-        print('[select module] Target has not be selected...')
-        print('[select module] Nothing was selected')
+        print(f'[!] {bcolors.FAIL}Target has not be selected...{bcolors.ENDC}')
+        print(f'[!] {bcolors.FAIL}Nothing was selected{bcolors.ENDC}')
     elif len(args) > 1:
-        print('[select module] Remove unneeded arguments...')
-        print('[select module] Nothing was selected')
+        print(f'[!] {bcolors.FAIL}Remove unneeded arguments...{bcolors.ENDC}')
+        print(f'[!] {bcolors.FAIL}Nothing was selected{bcolors.ENDC}')
     elif len(args) < 1:
-        print('[select module] Must specify idx number or module name...')
-        print('[select module] Nothing was selected')
+        print(f'[!] {bcolors.FAIL}Must specify idx number or module name...{bcolors.ENDC}')
+        print(f'[!] {bcolors.FAIL}Nothing was selected{bcolors.ENDC}')
     else:
         module_selector = args[0]
         selected_module = None
@@ -206,16 +243,18 @@ def select_module(args):
             global MODULE
             MODULE = selected_module()
         else:
-            print('[select module] Invaild input')
-            print('[select module] Nothing was selected')
+            print(f'[!] {bcolors.FAIL}Invaild input{bcolors.ENDC}')
+            print(f'[!] {bcolors.FAIL}Nothing was selected{bcolors.ENDC}')
 
 def session_target():
+    
     global TARGET
     if TARGET == None:
-        print('[session target] No target to connect to...')
+        print(f'[!] {bcolors.FAIL}No target to connect to...{bcolors.ENDC}')
     elif TARGET != None and not TARGET.backdoor:
-        print('[session target] Target has no backdoor...')
+        print(f'[!] {bcolors.FAIL}Target has no backdoor...{bcolors.ENDC}')
     else:
+        # spawns basic telnet terminal session from the backdoor
         with telnetlib.Telnet(TARGET.ip_addr, BACKDOOR_PORT) as tn:
             tn.interact()
             tn.close()
@@ -224,7 +263,6 @@ def info_target(hosts, args):
     
     # info either a list num or ip addr or already selected target
 
-
     global TARGET
     target_host = None
 
@@ -232,10 +270,10 @@ def info_target(hosts, args):
         target_host = TARGET
     elif len(args) == 0 and TARGET == None:
         # err
-        print('[info target] No selected target or argument was passed. Must specify list num, ip addr, or already selected target')
+        print(f'[!] {bcolors.FAIL}No selected target or argument was passed. Must specify list num, ip addr, or already selected target{bcolors.ENDC}')
     elif len(args) > 1:
         # err
-        print('[info target] Remove unneeded arugments')
+        print(f'[!] {bcolors.FAIL}Remove unneeded arugments{bcolors.ENDC}')
     else:
         target = args[0]
         # smallest (in terms of length) ip is 0.0.0.0, 1.1.1.1, etc
@@ -257,7 +295,7 @@ def info_target(hosts, args):
         for port in target_host.ports:
             print('{: <15} {: <15} {: <15} {: <15}'.format(port.number, port.protocol, port.state, port.service))
     else:
-        print('[info target] Invaild input')
+        print(f'[!] {bcolors.FAIL}Invaild input{bcolors.ENDC}')
     
     
 def run_module():
@@ -265,14 +303,16 @@ def run_module():
     global TARGET
     global LOCALHOST
     
+    # confirm TARGET and MODULE have been selected
     if TARGET != None and MODULE != None:
         try:
+            # inits and runs module
             MODULE.selected(LOCALHOST, TARGET)
             MODULE.run()
         except Exception as e:
             print(e)
     else:
-        print('[run module] Module and Target must be selected...')
+        print('[!] {bcolors.FAIL}Module and Target must be selected...{bcolors.ENDC}')
 
 def peekaboo_banner():
 
@@ -285,33 +325,74 @@ def peekaboo_banner():
 |_|                                          
 
     '''
-
     
     print(banner)
 
 def peekaboo_help():
-    print('ur gay')
+    info = '''
 
+# Current commands for Peekaboo:
+#
+# ! Target commands !
+# - lists targets
+#       lists targets for the nmap scan file in ordered list
+#       
+# - select target <arg1>
+#       selects target from nmap scan file
+#       arg1: can be idx from ordered list or ip addr
+#
+# - info target <arg1>
+#       lists port scan of selected target
+#       arg1: can be idx from ordered list or ip addr or none if target already selected
+#
+# - session target
+#       target MUST be selected already
+#       if target has a backdoor on BACKDOOR_PORT, will connect to backdoor shell        
+#
+# ! Module commands !
+# - list modules
+#       lists modules currently loaded in ordered list
+#
+# - reload modules
+#       reloads modules for MODULES dir
+#
+# - select module <arg1>
+#       selects module from currently loaded modules
+#       arg1: can be idx from ordered list or MODULE_NAME
+#
+# - run module
+#       module MUST be selected already
+#       Will run selected module on selected target
+#
+# ! Misc commands !
+# - help
+#       prints this text
+
+    '''
+    
+    print(info)
 
 def main():
 
     if len(sys.argv) != 2:
-        print('Nmap scan needed')
-        print('Exiting...')
+        print(f'[!] {bcolors.FAIL}Nmap scan needed{bcolors.ENDC}')
         sys.exit(1)
 
+    # reads file from sys arguments
     XML_nmap_capture_file = sys.argv[1]
-    
+        
+    # open XML nmap scan file and parse into dict using xmltodict lib
     with open(XML_nmap_capture_file, 'r') as f:
         XML_nmap_capture_data = xmltodict.parse(f.read())
 
+    # pull out needed data
     nmap_capture = XML_nmap_capture_data['nmaprun']
     nmap_capture_hosts = nmap_capture['host']
 
     hosts = []
     parsed_host_amt = 0
 
-    
+    # checks for online hosts, init host obj to serialize data, and adds to hosts arr
     for host in nmap_capture_hosts:
         if host['status']['@state'] == 'up':
             hosts.append(Host(host))
@@ -319,53 +400,15 @@ def main():
     
     user_cmd = None
 
-    '''
-        list targets 
-        - lists all hosts in nmap capture file (No args)
-        
-        select target
-        - select target from hosts (1 arg: num or ip)
-
-        info target
-        - prints port scan of target (1 arg: num or ip)
-
-        list modules
-        - lists all attack/exploit methods (No args)
- 
-        select module
-        - selects module from modules  (1 arg: num or name)
-    
-        run module
-        - runs selected module (No args)
-
-        list slaves (No args)
-        - lists all hosts with listening port Backdoor
-
-        info slave (1 arg: num or ip)
-        - prints system info of slave
-
-        select slave (1 args: num or ip)
-        - selects backdoored host for hosts
-        
-        session slave
-        - Connects to backdoored host and gives terminal
-        
-
-
-    '''
-
     cmd_dict = {
         ('list', 'targets'): 'list_targets(hosts)',
         ('select', 'target'): 'select_target(hosts, args)',
         ('info', 'target'): 'info_target(hosts, args)',
         ('reload', 'modules'): 'load_modules()',
-        ('test', 'module'): 'test_module()',
+        # ('test', 'module'): 'test_module()',
         ('list', 'modules'): 'list_modules()',
         ('select', 'module'): 'select_module(args)',
         ('run', 'module'): 'run_module()',
-        ('list', 'slaves'): 'list_slaves(hosts)',
-        ('select', 'slave'): '',
-        ('info', 'slave'): '',
         ('session', 'target'): 'session_target()',
         ('help', ): 'peekaboo_help()',
         (): 'do_nothing()'
@@ -373,11 +416,13 @@ def main():
 
     peekaboo_banner()
 
+    # grab localhost hostnames from assigned interfaces
     hostnames_str = get_hostnames()
     hostnames = hostnames_str.split()
 
     print(f'Your Hostnames are: {bcolors.HEADER}{hostnames_str}{bcolors.ENDC}\n')
 
+    # load modules on init
     load_modules()
 
     print()
@@ -385,7 +430,7 @@ def main():
     print(f'Using NMAP XML file: {XML_nmap_capture_file}')    
     print(f'Parsed {parsed_host_amt} hosts from {XML_nmap_capture_file}')
 
-    # removes localhost from nmap capture
+    # removes localhost from hosts arr and sets to LOCALHOST
     for host in hosts:
         for hostname in hostnames:
             if host.ip_addr == hostname:
@@ -396,6 +441,7 @@ def main():
                 LOCALHOST = host
     print()
 
+    # pings each online host from XML nmap scan file
     print('Pinging each Host to confirm online status...')
 
     up_host_amt = 0
@@ -412,7 +458,8 @@ def main():
         
     print(f'Pinged {parsed_host_amt} Hosts, {up_host_amt} hosts responded\n')
 
-
+    
+    # checks for backdoor port on hosts that responded to ping
     print(f'Detecting existing Backdoors (PORT: {BACKDOOR_PORT}) on online Hosts...')
 
     bd_host_amt = 0
@@ -432,7 +479,7 @@ def main():
     else:
         print(f'{bd_host_amt} Hosts are Backdoored!\n')
             
-
+    # takes user input from terminal interface
     while user_cmd == None:
         try:
 
@@ -444,11 +491,12 @@ def main():
             if TARGET != None and MODULE != None:
                 cmd_cursor = f'{PROG_NAME} {bcolors.OKBLUE}T({TARGET.ip_addr}){bcolors.ENDC} {bcolors.OKGREEN}M({MODULE.name()}){bcolors.ENDC} >> ' 
        
+            # parse out command and arguments, match to cmd_dict, and eval the matched function
             user_cmd = input(cmd_cursor).split()
             user_cmd = tuple(user_cmd)
             
             cmd = user_cmd[0:2]
-            #print(cmd)
+        
             args = user_cmd[2:len(user_cmd)]
  
             if cmd in cmd_dict.keys():
@@ -458,7 +506,7 @@ def main():
                 eval(out)
             
             else: 
-                print('Unknown Command :( Type help for a list of available commands')
+                print(f'[!] {bcolors.FAIL}Unknown Command :( Type help for a list of available commands{bcolors.END}')
 
             user_cmd = None        
 
