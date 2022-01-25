@@ -1,6 +1,7 @@
-/*
-server.c -- a stream socket server demo
-*/
+// tnabd_advanced.c
+//
+// Backdoor for Rasberry PI / Beagle Bone
+//
 
 #include <stdio.h>
 #include <stdlib.h>
