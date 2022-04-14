@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE nmaprun>
 <?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
-<!-- Nmap 7.70 scan initiated Mon Dec 27 21:22:35 2021 as: nmap -oX cap.xml -vv -F 192.168.2.0/24 -->
-<nmaprun scanner="nmap" args="nmap -oX cap.xml -vv -F 192.168.2.0/24" start="1640658155" startstr="Mon Dec 27 21:22:35 2021" version="7.70" xmloutputversion="1.04">
+<!-- Nmap 7.70 scan initiated Sun Jan 30 19:10:41 2022 as: nmap -oX captures/cap.xml -vv -F 192.168.2.0/24 -->
+<nmaprun scanner="nmap" args="nmap -oX captures/cap.xml -vv -F 192.168.2.0/24" start="1643587841" startstr="Sun Jan 30 19:10:41 2022" version="7.70" xmloutputversion="1.04">
 <scaninfo type="connect" protocol="tcp" numservices="100" services="7,9,13,21-23,25-26,37,53,79-81,88,106,110-111,113,119,135,139,143-144,179,199,389,427,443-445,465,513-515,543-544,548,554,587,631,646,873,990,993,995,1025-1029,1110,1433,1720,1723,1755,1900,2000-2001,2049,2121,2717,3000,3128,3306,3389,3986,4899,5000,5009,5051,5060,5101,5190,5357,5432,5631,5666,5800,5900,6000-6001,6646,7070,8000,8008-8009,8080-8081,8443,8888,9100,9999-10000,32768,49152-49157"/>
 <verbose level="2"/>
 <debugging level="0"/>
-<taskbegin task="Ping Scan" time="1640658155"/>
-<taskend task="Ping Scan" time="1640658163" extrainfo="256 total hosts"/>
-<taskbegin task="Parallel DNS resolution of 256 hosts." time="1640658163"/>
-<taskend task="Parallel DNS resolution of 256 hosts." time="1640658163"/>
+<taskbegin task="Ping Scan" time="1643587841"/>
+<taskend task="Ping Scan" time="1643587856" extrainfo="256 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 256 hosts." time="1643587856"/>
+<taskend task="Parallel DNS resolution of 256 hosts." time="1643587856"/>
 <host><status state="down" reason="net-unreach" reason_ttl="0"/>
 <address addr="192.168.2.0" addrtype="ipv4"/>
 </host>
@@ -226,10 +226,10 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.71" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.72" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.73" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -259,7 +259,7 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.82" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.83" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -271,10 +271,10 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.86" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.87" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.88" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -283,19 +283,19 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.90" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.91" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.92" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.93" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.94" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.95" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -331,7 +331,7 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.106" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.107" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -343,7 +343,7 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.110" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.111" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -367,10 +367,10 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.118" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.119" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.120" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -400,7 +400,7 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.129" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.130" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -433,10 +433,10 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.140" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.141" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.142" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -445,7 +445,7 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.144" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.145" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -454,25 +454,25 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.147" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.148" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.149" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.150" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.151" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.152" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.153" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.154" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -481,10 +481,10 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.156" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.157" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.158" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -496,25 +496,25 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.161" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.162" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.163" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.164" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.165" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.166" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.167" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.168" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -523,7 +523,7 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.170" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.171" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -535,22 +535,22 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.174" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.175" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.176" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.177" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.178" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.179" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.180" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -568,37 +568,37 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.185" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.186" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.187" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.188" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.189" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.190" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.191" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.192" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.193" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.194" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.195" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.196" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -607,22 +607,19 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.198" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.200" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
-<address addr="192.168.2.204" addrtype="ipv4"/>
-</host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.205" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.206" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.207" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.208" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -658,7 +655,7 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.219" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.220" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -673,7 +670,7 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.224" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.225" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -715,7 +712,7 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.238" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.239" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="no-response" reason_ttl="0"/>
@@ -757,66 +754,66 @@
 <host><status state="down" reason="no-response" reason_ttl="0"/>
 <address addr="192.168.2.252" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.253" addrtype="ipv4"/>
 </host>
-<host><status state="down" reason="no-response" reason_ttl="0"/>
+<host><status state="down" reason="host-unreach" reason_ttl="0"/>
 <address addr="192.168.2.254" addrtype="ipv4"/>
 </host>
 <host><status state="down" reason="net-unreach" reason_ttl="0"/>
 <address addr="192.168.2.255" addrtype="ipv4"/>
 </host>
-<taskbegin task="Connect Scan" time="1640658163"/>
-<taskend task="Connect Scan" time="1640658164" extrainfo="400 total ports"/>
-<host starttime="1640658155" endtime="1640658163"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<taskbegin task="Connect Scan" time="1643587856"/>
+<taskend task="Connect Scan" time="1643587857" extrainfo="500 total ports"/>
+<host starttime="1643587841" endtime="1643587856"><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.2.199" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<ports><extraports state="closed" count="97">
-<extrareasons reason="conn-refused" count="97"/>
+<ports><extraports state="closed" count="96">
+<extrareasons reason="conn-refused" count="96"/>
 </extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
 <port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
 <port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
-<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8888"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="sun-answerbook" method="table" conf="3"/></port>
 </ports>
-<times srtt="843" rttvar="545" to="100000"/>
+<times srtt="503" rttvar="263" to="100000"/>
 </host>
-<host starttime="1640658155" endtime="1640658164"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<host starttime="1643587841" endtime="1643587856"><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.2.201" addrtype="ipv4"/>
 <hostnames>
 <hostname name="victim1" type="PTR"/>
 </hostnames>
-<ports><extraports state="closed" count="95">
-<extrareasons reason="conn-refused" count="95"/>
+<ports><extraports state="closed" count="94">
+<extrareasons reason="conn-refused" count="94"/>
 </extraports>
 <port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="telnet" method="table" conf="3"/></port>
 <port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
 <port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
 <port protocol="tcp" portid="3000"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ppp" method="table" conf="3"/></port>
 <port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
 </ports>
-<times srtt="54727" rttvar="16871" to="122211"/>
+<times srtt="16012" rttvar="1479" to="100000"/>
 </host>
-<host starttime="1640658155" endtime="1640658164"><status state="up" reason="conn-refused" reason_ttl="0"/>
+<host starttime="1643587841" endtime="1643587857"><status state="up" reason="syn-ack" reason_ttl="0"/>
 <address addr="192.168.2.202" addrtype="ipv4"/>
 <hostnames>
 <hostname name="victim2" type="PTR"/>
 </hostnames>
-<ports><extraports state="closed" count="92">
-<extrareasons reason="conn-refused" count="92"/>
+<ports><extraports state="closed" count="94">
+<extrareasons reason="conn-refused" count="94"/>
 </extraports>
 <port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
 <port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
 <port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
-<port protocol="tcp" portid="427"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="svrloc" method="table" conf="3"/></port>
-<port protocol="tcp" portid="1755"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="wms" method="table" conf="3"/></port>
-<port protocol="tcp" portid="2121"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ccproxy-ftp" method="table" conf="3"/></port>
 <port protocol="tcp" portid="3000"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ppp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8000"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http-alt" method="table" conf="3"/></port>
 <port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
 </ports>
-<times srtt="59473" rttvar="6559" to="100000"/>
+<times srtt="40085" rttvar="4684" to="100000"/>
 </host>
-<host starttime="1640658155" endtime="1640658164"><status state="up" reason="conn-refused" reason_ttl="0"/>
+<host starttime="1643587841" endtime="1643587856"><status state="up" reason="conn-refused" reason_ttl="0"/>
 <address addr="192.168.2.203" addrtype="ipv4"/>
 <hostnames>
 <hostname name="victim3" type="PTR"/>
@@ -826,8 +823,21 @@
 </extraports>
 <port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
 </ports>
-<times srtt="1322" rttvar="129" to="100000"/>
+<times srtt="8433" rttvar="4421" to="100000"/>
 </host>
-<runstats><finished time="1640658164" timestr="Mon Dec 27 21:22:44 2021" elapsed="9.09" summary="Nmap done at Mon Dec 27 21:22:44 2021; 256 IP addresses (4 hosts up) scanned in 9.09 seconds" exit="success"/><hosts up="4" down="252" total="256"/>
+<host starttime="1643587841" endtime="1643587857"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="192.168.2.204" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="97">
+<extrareasons reason="conn-refused" count="97"/>
+</extraports>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="554"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="rtsp" method="table" conf="3"/></port>
+</ports>
+<times srtt="9426" rttvar="433" to="100000"/>
+</host>
+<runstats><finished time="1643587857" timestr="Sun Jan 30 19:10:57 2022" elapsed="15.92" summary="Nmap done at Sun Jan 30 19:10:57 2022; 256 IP addresses (5 hosts up) scanned in 15.92 seconds" exit="success"/><hosts up="5" down="251" total="256"/>
 </runstats>
 </nmaprun>

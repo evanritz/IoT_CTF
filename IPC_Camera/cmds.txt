@@ -1,0 +1,3 @@
+cat /proc/devices
+ls -l /proc/[0-9]*/fd/* | grep /dev/ao_dev
+

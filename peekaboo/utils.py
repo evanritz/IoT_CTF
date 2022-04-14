@@ -15,6 +15,8 @@ MODULES_DIR = os.path.join(WORKING_DIR, 'modules')
 
 LISTS_DIR = os.path.join(WORKING_DIR, 'lists')
 
+CAPTURES_DIR = os.path.join(WORKING_DIR, 'captures')
+
 BACKDOOR_PORT = 54111
 
 # for terminal coloring
@@ -57,4 +59,10 @@ def do_advanced_command(cmd):
     b_out, b_err = proc.communicate()
     return (b_out.decode('UTF-8').strip(), b_err.decode('UTF-8').strip(), proc.returncode)
 
-
+def wait_for_user_command(cmd):
+    try:
+        proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        while proc.poll() is None:
+            print(proc.stdout.readline().decode('UTF-8').strip())
+    except KeyboardInterrupt:
+        print()

@@ -179,7 +179,7 @@ class SSH_TELNET_BRUTEFORCE:
                     end_time = datetime.datetime.now()
                     print(f'\r[*] Attempted {idx+1} Username/Password Combos\n[*] Time Elapsed: {end_time-start_time}\033[F', end='')
 
-                    host_outs = self.attempt_connections(self.target.ip_addr, host_configs)         
+                    host_outs = self.attempt_SSH_connections(self.target.ip_addr, host_configs)         
                     
                     for i in range(0, len(host_outs)):
                         host_out = host_outs[i]

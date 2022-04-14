@@ -1,0 +1,3 @@
+sudo tcpdump -i wlan1 -w capture2.pcap (Capture during publishing)
+
+tshark -r capture2.pcap -Px -Y tcp.port==1883

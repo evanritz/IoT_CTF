@@ -44,7 +44,6 @@ root 	klv1234
 root 	pass
 root 	password
 root 	realtek
-root 	root
 root 	system
 root 	user
 root 	vizxv
@@ -59,3 +58,4 @@ tech 	tech
 ubnt 	ubnt
 user 	user
 debian  temppwd
+root    root

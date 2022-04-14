@@ -1,0 +1,4 @@
+2022-01-27T14:37:41-0500 [twisted.scripts._twistd_unix.UnixAppLogger#info] twistd 21.7.0 (/usr/bin/python3 3.7.3) starting up.
+2022-01-27T14:37:41-0500 [twisted.scripts._twistd_unix.UnixAppLogger#info] reactor class: twisted.internet.epollreactor.EPollReactor.
+2022-01-27T14:37:41-0500 [-] FTPFactory starting on 2121
+2022-01-27T14:37:41-0500 [twisted.protocols.ftp.FTPFactory#info] Starting factory <twisted.protocols.ftp.FTPFactory object at 0x75acb550>
